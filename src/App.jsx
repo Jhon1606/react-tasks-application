@@ -9,9 +9,21 @@ function App() {
   useEffect(() => {
     setTasks(data)
   },[])
+
+  function createTask(taskTitle,taskDescription){
+    if (taskDescription == ""){
+      taskDescription = "Nueva tarea"
+    }
+    setTasks([...tasks, {
+      title: taskTitle,
+      id: tasks.length,
+      description: taskDescription
+    }])
+  }
+
   return (
     <>
-      <TaskForm/>
+      <TaskForm createTask={createTask}/>
       <TaskList tasks={tasks}/>
     </>
   )
